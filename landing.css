@@ -365,6 +365,14 @@ a {
         transform: none;
     }
 
+    .route-panel.is-mobile-active .route-image-top {
+        transform: translateY(-108%);
+    }
+
+    .route-panel.is-mobile-active .route-image-under {
+        transform: scale(1.04);
+    }
+
     .quick-links-dock {
         min-height: 132px;
     }

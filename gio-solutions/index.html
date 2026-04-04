@@ -26,7 +26,7 @@
         <nav class="page-nav" aria-label="Primary">
             <a href="../creative/">Creative</a>
             <a href="../business/">Business</a>
-            <a href="../gio-solutions/" aria-current="page">Gio Solutions</a>
+            <a href="../gio-solutions/" aria-current="page"><span class="nav-label-full">Gio Solutions</span><span class="nav-label-mobile">Solutions</span></a>
             <a href="https://github.com/PobaG" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
     </header>
@@ -190,7 +190,9 @@
 
                 event.preventDefault();
 
-                const headerOffset = header ? header.offsetHeight + 12 : 0;
+                const headerStyles = header ? window.getComputedStyle(header) : null;
+                const headerIsTopDock = headerStyles ? headerStyles.top !== 'auto' : false;
+                const headerOffset = header && headerIsTopDock ? header.offsetHeight + 12 : 0;
                 const targetY = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
                 const returningTop = link.hasAttribute('data-back-to-top');
 
