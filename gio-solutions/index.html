@@ -188,6 +188,10 @@
                     <li>Layout and copy cleanup for existing sites</li>
                     <li>Simple static sites that are easy to host and maintain</li>
                 </ul>
+                <div class="action-row">
+                    <a class="button" href="#website-intake-form" data-scroll-link="true">Start Website Form</a>
+                    <a class="button button-secondary" href="mailto:giovanni@giovannimp.com?subject=Website%20Project%20Question">Skip Form And Email</a>
+                </div>
             </div>
             <div class="service-panel-side">
                 <p class="card-label">Best for</p>
@@ -197,6 +201,209 @@
                     <span>Business</span>
                     <span>Cleanup</span>
                 </div>
+                <p class="card-label">What happens</p>
+                <p>Rough notes are enough. I take the answers, handle the writing and design, then send a preview before anything goes live.</p>
+            </div>
+            <div class="service-intake">
+                <div class="service-intake-header">
+                    <p class="eyebrow">Website Intake</p>
+                    <h3>Fill this out once. I will turn it into the site.</h3>
+                    <p>You do not need polished copy. Short answers, bullets, and half-finished thoughts are fine.</p>
+                </div>
+                <form class="website-intake-form" id="website-intake-form" action="https://formspree.io/f/xdappwey" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="project_type" value="Website">
+                    <fieldset class="form-section">
+                        <legend>Section 1 - Basic Info</legend>
+                        <p class="form-section-copy">Keep this brain-dead simple.</p>
+                        <div class="form-grid">
+                            <label class="form-field">
+                                <span>Business Name</span>
+                                <input type="text" name="business_name" autocomplete="organization" placeholder="Example Auto Repair">
+                            </label>
+                            <label class="form-field">
+                                <span>Your Name</span>
+                                <input type="text" name="name" autocomplete="name" required placeholder="Your name" data-fs-field>
+                            </label>
+                            <label class="form-field">
+                                <span>Phone Number</span>
+                                <input type="tel" name="phone_number" autocomplete="tel" placeholder="(555) 555-5555">
+                            </label>
+                            <label class="form-field">
+                                <span>Email Address</span>
+                                <input type="email" name="email" autocomplete="email" required placeholder="you@example.com" data-fs-field>
+                                <span class="field-error" data-fs-error="email" aria-live="polite"></span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 2 - What Do You Do?</legend>
+                        <p class="form-section-copy">Do not overthink it. Bullet points are perfect.</p>
+                        <label class="form-field form-field-full">
+                            <span>What services do you offer?</span>
+                            <textarea name="services_offered" rows="5" placeholder="- Oil changes&#10;- Brake repair&#10;- Mobile detailing"></textarea>
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 3 - Main Goal</legend>
+                        <p class="form-section-copy">This tells me how to design the site.</p>
+                        <div class="choice-grid">
+                            <label class="choice-chip">
+                                <input type="checkbox" name="main_goal" value="Get more customers">
+                                <span>Get more customers</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="main_goal" value="Look professional">
+                                <span>Look professional</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="main_goal" value="Show your work">
+                                <span>Show your work</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="main_goal" value="Other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                        <label class="form-field form-field-full">
+                            <span>Other goal</span>
+                            <input type="text" name="main_goal_other" placeholder="If there is another goal, drop it here">
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 4 - Contact Preferences</legend>
+                        <p class="form-section-copy">This directly powers the CTA.</p>
+                        <div class="choice-grid">
+                            <label class="choice-chip">
+                                <input type="checkbox" name="contact_method" value="Phone call">
+                                <span>Phone call</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="contact_method" value="Text">
+                                <span>Text</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="contact_method" value="Email">
+                                <span>Email</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="contact_method" value="Website form">
+                                <span>Website form</span>
+                            </label>
+                        </div>
+                        <div class="form-grid">
+                            <label class="form-field">
+                                <span>Preferred Phone To Display</span>
+                                <input type="tel" name="display_phone" autocomplete="tel" placeholder="Number to show on the site">
+                            </label>
+                            <label class="form-field">
+                                <span>Preferred Email To Display</span>
+                                <input type="email" name="display_email" autocomplete="email" placeholder="Email to show on the site">
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 5 - Location</legend>
+                        <p class="form-section-copy">This helps with local SEO.</p>
+                        <div class="form-grid">
+                            <label class="form-field">
+                                <span>City / Area You Serve</span>
+                                <input type="text" name="service_area" placeholder="Denver, Aurora, Littleton">
+                            </label>
+                            <div class="form-field">
+                                <span>Do you travel to customers?</span>
+                                <div class="choice-grid choice-grid-compact">
+                                    <label class="choice-chip">
+                                        <input type="radio" name="travels_to_customers" value="Yes">
+                                        <span>Yes</span>
+                                    </label>
+                                    <label class="choice-chip">
+                                        <input type="radio" name="travels_to_customers" value="No">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 6 - Content</legend>
+                        <p class="form-section-copy">Low pressure. You do not need much.</p>
+                        <div class="choice-grid">
+                            <label class="choice-chip">
+                                <input type="checkbox" name="available_assets" value="Logo">
+                                <span>Logo</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="available_assets" value="Photos of your work">
+                                <span>Photos of your work</span>
+                            </label>
+                            <label class="choice-chip">
+                                <input type="checkbox" name="available_assets" value="None (that's okay)">
+                                <span>None (that is okay)</span>
+                            </label>
+                        </div>
+                        <label class="form-field form-field-full">
+                            <span>Upload Section (Optional)</span>
+                            <input type="file" name="optional_uploads" multiple>
+                            <small>Optional. If your Formspree form accepts uploads, include files here with the intake.</small>
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 7 - Style</legend>
+                        <p class="form-section-copy">Optional, but useful.</p>
+                        <div class="form-grid">
+                            <label class="form-field form-field-full">
+                                <span>Any websites you like? Paste links.</span>
+                                <textarea name="liked_websites" rows="4" placeholder="https://example.com&#10;https://another-example.com"></textarea>
+                            </label>
+                            <div class="form-field form-field-full">
+                                <span>Preferred vibe</span>
+                                <div class="choice-grid">
+                                    <label class="choice-chip">
+                                        <input type="radio" name="preferred_vibe" value="Clean and simple">
+                                        <span>Clean and simple</span>
+                                    </label>
+                                    <label class="choice-chip">
+                                        <input type="radio" name="preferred_vibe" value="Bold and modern">
+                                        <span>Bold and modern</span>
+                                    </label>
+                                    <label class="choice-chip">
+                                        <input type="radio" name="preferred_vibe" value="Does not matter - you decide">
+                                        <span>Does not matter - you decide</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Section 8 - Extra</legend>
+                        <p class="form-section-copy">This is gold for writing copy.</p>
+                        <label class="form-field form-field-full">
+                            <span>Why should someone choose you?</span>
+                            <textarea name="why_choose_you" rows="5" placeholder="Even a rough answer is perfect."></textarea>
+                        </label>
+                    </fieldset>
+
+                    <div class="expectation-note">
+                        <p class="eyebrow">Final Section - Set Expectations</p>
+                        <p>I will take everything you submit and build a clean, professional website for you.</p>
+                        <p>You do not need to worry about writing or design. I handle that.</p>
+                        <p>I will send you a preview before it goes live.</p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="button" type="submit" data-fs-submit-btn>Send Website Request</button>
+                        <p class="form-feedback">Submit once and I will get the full intake in Formspree.</p>
+                    </div>
+                    <p class="form-status form-status-error" data-fs-error aria-live="polite"></p>
+                    <p class="form-status form-status-success" data-fs-success aria-live="polite"></p>
+                </form>
             </div>
         </section>
 
@@ -303,7 +510,15 @@
                 animateScrollTo(targetY, { hash: href, returningTop });
             });
         });
+        window.formspree = window.formspree || function () {
+            (formspree.q = formspree.q || []).push(arguments);
+        };
+        formspree('initForm', {
+            formElement: '#website-intake-form',
+            formId: 'xdappwey'
+        });
     </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 
 </html>
