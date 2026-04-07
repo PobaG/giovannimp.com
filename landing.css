@@ -9,6 +9,7 @@
     --text-light: #f7f1e6;
     --text-dark: #111111;
     --footer-height: clamp(108px, 18vh, 160px);
+    --mobile-footer-height: 88px;
     --panel-shift: clamp(16px, 2vw, 28px);
 }
 
@@ -197,6 +198,10 @@ a {
     background: #f0d94a;
 }
 
+.quick-links-title {
+    display: none;
+}
+
 .quick-links-cover {
     z-index: 1;
     background: #050505;
@@ -377,8 +382,9 @@ a {
 
 @media (max-width: 980px) {
     .landing-page {
-        grid-template-rows: auto auto;
+        grid-template-rows: auto;
         overflow: auto;
+        padding-bottom: calc(var(--mobile-footer-height) + env(safe-area-inset-bottom));
     }
 
     .landing-grid {
@@ -386,7 +392,7 @@ a {
     }
 
     .route-panel {
-        min-height: 78svh;
+        min-height: calc(100svh - var(--mobile-footer-height) - env(safe-area-inset-bottom));
     }
 
     .route-panel:hover,
@@ -403,7 +409,14 @@ a {
     }
 
     .quick-links-dock {
-        min-height: 132px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        min-height: var(--mobile-footer-height);
+        overflow: visible;
+        background: #f0d94a;
     }
 
     .quick-links-reveal,
@@ -413,11 +426,42 @@ a {
     }
 
     .quick-links-reveal {
-        min-height: 132px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        align-items: center;
+        min-height: var(--mobile-footer-height);
+        padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
     }
 
     .quick-links-cover {
         display: none;
+    }
+
+    .quick-links-title {
+        display: block;
+        grid-column: 1 / -1;
+        margin: 0;
+        color: #111111;
+        font-family: var(--font-ui);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .quick-links-reveal a,
+    .quick-link-button {
+        min-width: 0;
+        min-height: 2.35rem;
+        padding: 0.58rem 0.3rem;
+        font-size: clamp(0.56rem, 2.2vw, 0.68rem);
+        letter-spacing: 0.04em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
@@ -428,14 +472,11 @@ a {
         bottom: 18px;
     }
 
-    .quick-links-reveal,
     .contact-form-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .quick-links-reveal a,
-    .quick-link-button,
     .contact-submit,
     .modal-close {
         width: 100%;
