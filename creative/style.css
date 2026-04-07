@@ -10,6 +10,7 @@
     --muted: rgba(28, 22, 19, 0.78);
     --surface: rgba(255, 250, 242, 0.74);
     --border: rgba(28, 22, 19, 0.12);
+    --sticky-top: 96px;
 }
 
 body {
@@ -58,11 +59,15 @@ a {
 }
 
 .page-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 18px;
     padding: 22px 0;
+    backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -113,11 +118,19 @@ a {
     padding-bottom: 40px;
 }
 
+.page-main > section {
+    scroll-margin-top: var(--sticky-top);
+}
+
 .hero-grid,
 .split-section {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     gap: 24px;
+}
+
+.hero-grid {
+    align-items: center;
 }
 
 .hero-copy,
@@ -153,7 +166,7 @@ h2 {
 }
 
 h1 {
-    font-size: clamp(2.8rem, 5vw, 5.6rem);
+    font-size: clamp(2.25rem, 4.2vw, 4.4rem);
 }
 
 h2 {
@@ -208,7 +221,7 @@ ul {
 
 .hero-collage {
     position: relative;
-    min-height: 520px;
+    min-height: clamp(360px, 52svh, 560px);
 }
 
 .hero-photo {
@@ -219,10 +232,10 @@ ul {
 }
 
 .hero-photo-main {
-    top: 26px;
-    left: 0;
-    width: 78%;
-    height: 72%;
+    top: 18px;
+    left: 4%;
+    width: 92%;
+    height: calc(100% - 54px);
     object-fit: cover;
     border-radius: 34px;
     transform: rotate(-3deg);
@@ -323,15 +336,26 @@ ul {
     }
 
     .hero-collage {
-        min-height: 460px;
+        min-height: clamp(300px, 46svh, 460px);
+    }
+}
+
+@media (min-width: 921px) and (min-height: 680px) {
+    .page-main > section {
+        position: sticky;
+        top: var(--sticky-top);
     }
 }
 
 @media (max-width: 720px) {
     .page-header {
+        position: static;
+        top: auto;
+        z-index: auto;
         width: auto;
         margin: 0;
         padding: 0;
+        backdrop-filter: none;
     }
 
     .page-main {
@@ -395,9 +419,14 @@ ul {
         width: 100%;
     }
 
+    .hero-collage {
+        min-height: clamp(260px, 42svh, 360px);
+    }
+
     .hero-photo-main {
-        width: 84%;
-        height: 66%;
+        left: 2%;
+        width: 96%;
+        height: calc(100% - 54px);
     }
 
     .hero-photo-side {

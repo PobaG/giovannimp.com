@@ -10,6 +10,7 @@
     --muted: rgba(21, 17, 15, 0.76);
     --surface: rgba(255, 252, 246, 0.92);
     --border: rgba(21, 17, 15, 0.1);
+    --sticky-top: 96px;
 }
 
 body {
@@ -47,11 +48,15 @@ a {
 }
 
 .page-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 18px;
     padding: 22px 0;
+    backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -99,8 +104,30 @@ a {
 
 .page-main {
     display: grid;
-    gap: 24px;
+    gap: 18px;
     padding-bottom: 42px;
+}
+
+.page-main > section {
+    scroll-margin-top: var(--sticky-top);
+}
+
+.identity-strip {
+    padding: 16px 22px;
+    border: 1px solid rgba(21, 17, 15, 0.22);
+    border-radius: 28px;
+    background: #15110f;
+    color: #fff;
+    box-shadow: 0 18px 34px rgba(21, 17, 15, 0.12);
+}
+
+.identity-strip p {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 3rem);
+    font-weight: 700;
+    line-height: 0.98;
 }
 
 .hero-grid,
@@ -144,7 +171,7 @@ h3 {
 }
 
 h1 {
-    font-size: clamp(2.7rem, 5vw, 5.3rem);
+    font-size: clamp(2.35rem, 4.4vw, 4.6rem);
 }
 
 h2 {
@@ -168,6 +195,47 @@ ul {
 .lead {
     max-width: 36rem;
     font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+}
+
+.funnel-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 1.35rem;
+}
+
+.funnel-steps article {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid rgba(21, 17, 15, 0.1);
+    border-radius: 18px;
+    background: rgba(21, 17, 15, 0.04);
+}
+
+.funnel-steps span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(21, 17, 15, 0.52);
+}
+
+.funnel-steps strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.funnel-steps p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.35;
 }
 
 .action-row,
@@ -211,7 +279,7 @@ ul {
 
 .summary-card img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     border-bottom: 1px solid var(--border);
 }
@@ -312,11 +380,22 @@ ul {
     }
 }
 
+@media (min-width: 921px) and (min-height: 680px) {
+    .page-main > section {
+        position: sticky;
+        top: var(--sticky-top);
+    }
+}
+
 @media (max-width: 720px) {
     .page-header {
+        position: static;
+        top: auto;
+        z-index: auto;
         width: auto;
         margin: 0;
         padding: 0;
+        backdrop-filter: none;
     }
 
     .page-main {
@@ -378,6 +457,10 @@ ul {
         flex-direction: column;
         align-items: stretch;
         width: 100%;
+    }
+
+    .funnel-steps {
+        grid-template-columns: 1fr;
     }
 
     .resume-frame {
