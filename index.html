@@ -4,22 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Giovanni Palazzolo | Portfolio, Creative Work, Business, Gio Solutions</title>
-    <meta name="description" content="Explore Giovanni Palazzolo's portfolio, creative projects, business background, and Gio Solutions services for video, websites, and computer help.">
+    <title>Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work</title>
+    <meta name="description" content="Explore Giovanni Palazzolo's business background, web development work, Gio Solutions services, and creative projects.">
     <meta name="author" content="Giovanni Palazzolo">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://giovannimp.com/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Giovanni Palazzolo Portfolio">
-    <meta property="og:title" content="Giovanni Palazzolo | Portfolio, Creative Work, Business, Gio Solutions">
-    <meta property="og:description" content="Explore creative work, business experience, and Gio Solutions services from Giovanni Palazzolo.">
+    <meta property="og:title" content="Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work">
+    <meta property="og:description" content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
     <meta property="og:url" content="https://giovannimp.com/">
     <meta property="og:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta property="og:image:alt" content="Headshot of Giovanni Palazzolo.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Giovanni Palazzolo | Portfolio, Creative Work, Business, Gio Solutions">
-    <meta name="twitter:description" content="Explore creative work, business experience, and Gio Solutions services from Giovanni Palazzolo.">
+    <meta name="twitter:title" content="Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work">
+    <meta name="twitter:description" content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
     <meta name="twitter:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta name="twitter:image:alt" content="Headshot of Giovanni Palazzolo.">
     <script type="application/ld+json">
@@ -31,7 +31,7 @@
                     "@id": "https://giovannimp.com/#website",
                     "url": "https://giovannimp.com/",
                     "name": "Giovanni Palazzolo",
-                    "description": "Portfolio, projects, and Gio Solutions services from Giovanni Palazzolo.",
+                    "description": "Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.",
                     "inLanguage": "en-US"
                 },
                 {
@@ -69,31 +69,19 @@
 <body class="landing-page">
     <header class="sr-only">
         <h1>Giovanni Palazzolo</h1>
-        <p>Portfolio hub for business experience, creative work, and Gio Solutions services.</p>
+        <p>Portfolio hub for business experience, web development work, Gio Solutions services, and creative projects.</p>
     </header>
 
     <main class="landing-grid" aria-label="Primary site sections">
-        <a class="route-panel route-creative reveal" href="creative/">
-            <div class="route-media" aria-hidden="true">
-                <img class="route-image route-image-under" src="Assets/calisthenics.jpg" alt="">
-                <div class="route-overlay route-image-top route-overlay-rainbow"></div>
-            </div>
-            <div class="route-copy">
-                <span class="route-index">01</span>
-                <h2>Creative</h2>
-                <p>Media, hobbies, weird internet energy, and the more colorful version of my life.</p>
-            </div>
-        </a>
-
         <a class="route-panel route-business reveal" href="business/">
             <div class="route-media" aria-hidden="true">
                 <img class="route-image route-image-under" src="Assets/bls_prices_plot.png" alt="">
                 <div class="route-overlay route-image-top route-overlay-red"></div>
             </div>
             <div class="route-copy">
-                <span class="route-index">02</span>
+                <span class="route-index">01</span>
                 <h2>Business</h2>
-                <p>Experience, project proof, and the clean professional case.</p>
+                <p>Operations + tech, web development, and project proof for work that actually gets used.</p>
             </div>
         </a>
 
@@ -103,23 +91,75 @@
                 <div class="route-overlay route-image-top route-overlay-blue"></div>
             </div>
             <div class="route-copy">
-                <span class="route-index">03</span>
+                <span class="route-index">02</span>
                 <h2>Gio Solutions</h2>
                 <p>Video, websites, and computer help for practical jobs that need doing.</p>
+            </div>
+        </a>
+
+        <a class="route-panel route-creative reveal" href="creative/">
+            <div class="route-media" aria-hidden="true">
+                <img class="route-image route-image-under" src="Assets/calisthenics.jpg" alt="">
+                <div class="route-overlay route-image-top route-overlay-rainbow"></div>
+            </div>
+            <div class="route-copy">
+                <span class="route-index">03</span>
+                <h2>Creative</h2>
+                <p>Media, hobbies, weird internet energy, and the more colorful version of my life.</p>
             </div>
         </a>
     </main>
 
     <footer class="quick-links-dock">
         <div class="quick-links-reveal">
-            <a href="mailto:giovanni@giovannimp.com">Email</a>
+            <button class="quick-link-button" type="button" data-contact-open aria-controls="contact-modal" aria-expanded="false">Contact Me</button>
             <a href="https://github.com/PobaG" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.youtube.com/@poba.g" target="_blank" rel="noreferrer">Poba.G</a>
-            <a href="business/">Business</a>
-            <a href="gio-solutions/">Gio Solutions</a>
         </div>
         <div class="quick-links-cover" aria-hidden="true">Quick Links</div>
     </footer>
+
+    <div class="contact-modal" id="contact-modal" hidden>
+        <button class="contact-modal-backdrop" type="button" data-contact-close aria-label="Close contact form"></button>
+        <section class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+            <button class="modal-close" type="button" data-contact-close>Close</button>
+            <p class="modal-kicker">Contact</p>
+            <h2 id="contact-title">Tell me what you need.</h2>
+            <p class="contact-modal-intro">Send a quick note and I will reply by email.</p>
+
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/xaqlvqay" method="POST">
+                <input type="hidden" name="_subject" value="New contact from giovannimp.com">
+                <div class="contact-form-grid">
+                    <label>
+                        Name
+                        <input type="text" name="name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        Topic
+                        <select name="topic" required>
+                            <option value="">Pick one</option>
+                            <option value="Business / role">Business / role</option>
+                            <option value="Website project">Website project</option>
+                            <option value="Video / creative">Video / creative</option>
+                            <option value="Computer help">Computer help</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                    <label class="message-field">
+                        Message
+                        <textarea name="message" required placeholder="A few details are enough."></textarea>
+                    </label>
+                </div>
+                <div class="contact-form-actions">
+                    <button class="contact-submit" type="submit">Send</button>
+                    <p class="form-feedback" data-contact-feedback role="status" aria-live="polite">Ready when you are.</p>
+                </div>
+            </form>
+        </section>
+    </div>
 
     <script src="landing.js"></script>
 </body>

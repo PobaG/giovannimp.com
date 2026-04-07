@@ -247,13 +247,18 @@ a {
 .contact-modal-backdrop {
     position: absolute;
     inset: 0;
+    padding: 0;
+    border: 0;
     background: rgba(0, 0, 0, 0.74);
+    cursor: pointer;
 }
 
 .contact-modal-card {
     position: relative;
     z-index: 1;
     width: min(720px, calc(100% - 32px));
+    max-height: calc(100svh - 32px);
+    overflow: auto;
     margin: min(10vh, 72px) auto 0;
     padding: 24px;
     background: #0f0f0f;
@@ -285,6 +290,13 @@ a {
     font-weight: 700;
     line-height: 0.94;
     letter-spacing: -0.05em;
+}
+
+.contact-modal-intro {
+    margin: 0 0 1.25rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    opacity: 0.82;
 }
 
 .contact-form {
@@ -341,6 +353,11 @@ a {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     opacity: 0.72;
+}
+
+.contact-submit[disabled] {
+    opacity: 0.66;
+    cursor: wait;
 }
 
 .modal-open {

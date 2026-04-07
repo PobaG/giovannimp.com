@@ -3,7 +3,13 @@ document.documentElement.classList.add("js-enabled");
 const revealItems = document.querySelectorAll(".reveal");
 const routePanels = Array.from(document.querySelectorAll(".route-panel"));
 const mobileRouteMedia = window.matchMedia("(max-width: 980px)");
+const contactModal = document.querySelector("#contact-modal");
+const contactOpenButton = document.querySelector("[data-contact-open]");
+const contactCloseButtons = document.querySelectorAll("[data-contact-close]");
+const contactForm = document.querySelector("#contact-form");
+const contactFeedback = document.querySelector("[data-contact-feedback]");
 let mobileRouteObserver = null;
+let lastContactTrigger = null;
 
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries, currentObserver) => {
@@ -28,6 +34,12 @@ const clearMobileRouteState = () => {
     routePanels.forEach((panel) => panel.classList.remove("is-mobile-active"));
 };
 
+const setDefaultMobileRouteState = () => {
+    if (mobileRouteMedia.matches && routePanels.length > 0) {
+        routePanels[0].classList.add("is-mobile-active");
+    }
+};
+
 const setupMobileRouteReveal = () => {
     if (mobileRouteObserver) {
         mobileRouteObserver.disconnect();
@@ -36,7 +48,13 @@ const setupMobileRouteReveal = () => {
 
     clearMobileRouteState();
 
-    if (!mobileRouteMedia.matches || routePanels.length === 0 || !("IntersectionObserver" in window)) {
+    if (!mobileRouteMedia.matches || routePanels.length === 0) {
+        return;
+    }
+
+    setDefaultMobileRouteState();
+
+    if (!("IntersectionObserver" in window)) {
         return;
     }
 
@@ -60,3 +78,95 @@ if (typeof mobileRouteMedia.addEventListener === "function") {
 }
 
 setupMobileRouteReveal();
+
+const setContactModalOpen = (isOpen) => {
+    if (!contactModal) {
+        return;
+    }
+
+    contactModal.hidden = !isOpen;
+    document.body.classList.toggle("modal-open", isOpen);
+
+    if (contactOpenButton) {
+        contactOpenButton.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    if (isOpen) {
+        window.requestAnimationFrame(() => {
+            const firstField = contactModal.querySelector(".contact-form input:not([type='hidden']), .contact-form select, .contact-form textarea, .modal-close");
+
+            if (firstField) {
+                firstField.focus();
+            }
+        });
+
+        return;
+    }
+
+    if (lastContactTrigger) {
+        lastContactTrigger.focus();
+    }
+};
+
+if (contactOpenButton) {
+    contactOpenButton.addEventListener("click", () => {
+        lastContactTrigger = contactOpenButton;
+        setContactModalOpen(true);
+    });
+}
+
+contactCloseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        setContactModalOpen(false);
+    });
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && contactModal && !contactModal.hidden) {
+        setContactModalOpen(false);
+    }
+});
+
+if (contactForm && "fetch" in window) {
+    contactForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const submitButton = contactForm.querySelector(".contact-submit");
+
+        if (contactFeedback) {
+            contactFeedback.textContent = "Sending...";
+        }
+
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: new FormData(contactForm),
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Contact form submission failed.");
+            }
+
+            contactForm.reset();
+
+            if (contactFeedback) {
+                contactFeedback.textContent = "Sent. I will reply by email.";
+            }
+        } catch (error) {
+            if (contactFeedback) {
+                contactFeedback.textContent = "Could not send yet. Try again in a minute.";
+            }
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+            }
+        }
+    });
+}

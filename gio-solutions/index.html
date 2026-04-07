@@ -126,9 +126,9 @@
     <header class="page-header">
         <a class="brand" href="../">poba</a>
         <nav class="page-nav" aria-label="Primary">
-            <a href="../creative/">Creative</a>
             <a href="../business/">Business</a>
             <a href="../gio-solutions/" aria-current="page"><span class="nav-label-full">Gio Solutions</span><span class="nav-label-mobile">Solutions</span></a>
+            <a href="../creative/">Creative</a>
             <a href="https://github.com/PobaG" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
     </header>
@@ -226,7 +226,7 @@
                                 </label>
                                 <label class="form-field">
                                     <span>Your Name</span>
-                                    <input type="text" name="name" autocomplete="name" required placeholder="Your name" data-fs-field>
+                                    <input type="text" name="name" autocomplete="name" required placeholder="Your name">
                                 </label>
                                 <label class="form-field">
                                     <span>Phone Number</span>
@@ -234,8 +234,8 @@
                                 </label>
                                 <label class="form-field">
                                     <span>Email Address</span>
-                                    <input type="email" name="email" autocomplete="email" required placeholder="you@example.com" data-fs-field>
-                                    <span class="field-error" data-fs-error="email" aria-live="polite"></span>
+                                    <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+                                    <span class="field-error" data-intake-error="email" aria-live="polite"></span>
                                 </label>
                             </div>
                         </fieldset>
@@ -389,11 +389,11 @@
                         </div>
 
                         <div class="form-actions">
-                            <button class="button" type="submit" data-fs-submit-btn>Send Website Request</button>
-                            <p class="form-feedback">Submit once and I will get the full intake in Formspree.</p>
+                            <button class="button" type="submit" data-intake-submit="true">Send Website Request</button>
+                            <p class="form-feedback">Submit once and I will get the full intake.</p>
                         </div>
-                        <p class="form-status form-status-error" data-fs-error aria-live="polite"></p>
-                        <p class="form-status form-status-success" data-fs-success aria-live="polite"></p>
+                        <p class="form-status form-status-error" data-form-status="error" aria-live="polite"></p>
+                        <p class="form-status form-status-success" data-form-status="success" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -427,8 +427,13 @@
         const scrollLinks = document.querySelectorAll('[data-scroll-link="true"]');
         const header = document.querySelector('.page-header');
         const websiteFormModal = document.getElementById('website-intake-modal');
+        const websiteIntakeForm = document.getElementById('website-intake-form');
         const openWebsiteFormButtons = document.querySelectorAll('[data-open-website-form="true"]');
         const closeWebsiteFormButtons = document.querySelectorAll('[data-close-website-form="true"]');
+        const websiteIntakeSubmit = websiteIntakeForm ? websiteIntakeForm.querySelector('[data-intake-submit="true"]') : null;
+        const websiteIntakeEmailError = websiteIntakeForm ? websiteIntakeForm.querySelector('[data-intake-error="email"]') : null;
+        const websiteIntakeErrorStatus = websiteIntakeForm ? websiteIntakeForm.querySelector('[data-form-status="error"]') : null;
+        const websiteIntakeSuccessStatus = websiteIntakeForm ? websiteIntakeForm.querySelector('[data-form-status="success"]') : null;
         let lastWebsiteFormTrigger = null;
         let activeAnimation = null;
 
@@ -551,15 +556,58 @@
             }
         });
 
-        window.formspree = window.formspree || function () {
-            (formspree.q = formspree.q || []).push(arguments);
+        const setWebsiteIntakeStatus = ({ error = '', success = '', emailError = '' } = {}) => {
+            if (websiteIntakeErrorStatus) {
+                websiteIntakeErrorStatus.textContent = error;
+            }
+
+            if (websiteIntakeSuccessStatus) {
+                websiteIntakeSuccessStatus.textContent = success;
+            }
+
+            if (websiteIntakeEmailError) {
+                websiteIntakeEmailError.textContent = emailError;
+            }
         };
-        formspree('initForm', {
-            formElement: '#website-intake-form',
-            formId: 'xdappwey'
-        });
+
+        if (websiteIntakeForm && 'fetch' in window) {
+            websiteIntakeForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                setWebsiteIntakeStatus();
+
+                if (websiteIntakeSubmit) {
+                    websiteIntakeSubmit.disabled = true;
+                }
+
+                try {
+                    const response = await fetch(websiteIntakeForm.action, {
+                        method: 'POST',
+                        body: new FormData(websiteIntakeForm),
+                        headers: {
+                            Accept: 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Website intake submission failed.');
+                    }
+
+                    websiteIntakeForm.reset();
+                    setWebsiteIntakeStatus({
+                        success: 'Sent. I will review it and reply by email.'
+                    });
+                } catch (error) {
+                    setWebsiteIntakeStatus({
+                        error: 'Could not send yet. Try again in a minute.'
+                    });
+                } finally {
+                    if (websiteIntakeSubmit) {
+                        websiteIntakeSubmit.disabled = false;
+                    }
+                }
+            });
+        }
     </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 
 </html>
