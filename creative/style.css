@@ -340,10 +340,15 @@ ul {
     }
 }
 
-@media (min-width: 921px) and (min-height: 680px) {
+@media (min-width: 721px) and (min-height: 640px) {
+    html {
+        scroll-snap-type: y proximity;
+        scroll-padding-top: var(--sticky-top);
+    }
+
     .page-main > section {
-        position: sticky;
-        top: var(--sticky-top);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
 }
 

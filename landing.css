@@ -396,10 +396,9 @@ a {
     }
 
     .route-panel {
-        position: sticky;
-        top: 0;
         min-height: calc(100svh - var(--mobile-footer-height) - env(safe-area-inset-bottom));
         scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
 
     .route-panel:hover,

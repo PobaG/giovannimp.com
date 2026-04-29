@@ -192,6 +192,10 @@ ul {
     padding-left: 1.1em;
 }
 
+.project-list {
+    margin-bottom: 1.4rem;
+}
+
 .lead {
     max-width: 36rem;
     font-size: clamp(1.05rem, 1.8vw, 1.2rem);
@@ -331,6 +335,29 @@ ul {
     border-radius: 22px;
 }
 
+.featured-project {
+    padding: 18px;
+    border: 1px solid rgba(21, 17, 15, 0.1);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.44);
+}
+
+.featured-project h3 {
+    margin-bottom: 0.55rem;
+}
+
+.project-highlights {
+    margin-bottom: 1rem;
+}
+
+.project-highlights li + li {
+    margin-top: 0.5rem;
+}
+
+.project-stack {
+    gap: 10px;
+}
+
 .details-list {
     display: grid;
     gap: 12px;
@@ -380,10 +407,15 @@ ul {
     }
 }
 
-@media (min-width: 921px) and (min-height: 680px) {
+@media (min-width: 721px) and (min-height: 640px) {
+    html {
+        scroll-snap-type: y proximity;
+        scroll-padding-top: var(--sticky-top);
+    }
+
     .page-main > section {
-        position: sticky;
-        top: var(--sticky-top);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
 }
 
@@ -457,6 +489,10 @@ ul {
         flex-direction: column;
         align-items: stretch;
         width: 100%;
+    }
+
+    .project-stack {
+        gap: 8px;
     }
 
     .funnel-steps {
