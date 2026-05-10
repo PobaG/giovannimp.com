@@ -262,6 +262,12 @@
                     <a class="rhino-side-link"
                         href="https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
                         target="_blank" rel="noopener noreferrer">Paycom job posting</a>
+                    <p class="rhino-name-label">Call or text</p>
+                    <div class="rhino-phone-row">
+                        <a class="rhino-side-link rhino-phone-link" id="rhinoPhoneLink" href="tel:3035472671">303 547
+                            2671</a>
+                        <button class="rhino-copy rhino-copy-compact" id="copyPhoneRhino" type="button">Copy</button>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -272,13 +278,16 @@
             const modal = document.getElementById('rhinoModal');
             const closeBtn = document.getElementById('closeRhino');
             const copyBtn = document.getElementById('copyRhino');
+            const copyPhoneBtn = document.getElementById('copyPhoneRhino');
             const refName = document.getElementById('refName').textContent.trim();
+            const phoneNumber = document.getElementById('rhinoPhoneLink').textContent.trim();
             const roleBtn = document.getElementById('roleBtn');
             const stipBtn = document.getElementById('stipBtn');
             const rolePanel = document.getElementById('rolePanel');
             const stipPanel = document.getElementById('stipPanel');
             const contactModal = document.getElementById('contact-modal');
             const defaultCopyLabel = copyBtn.textContent;
+            const defaultCopyPhoneLabel = copyPhoneBtn.textContent;
 
             function trackRhinoEvent(eventName, details = {}) {
                 if (typeof window.trackEvent !== 'function') {
@@ -330,21 +339,29 @@
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-            copyBtn.addEventListener('click', async () => {
+            async function copyValue(value, button, defaultLabel, eventName) {
                 try {
                     if (navigator.clipboard && navigator.clipboard.writeText) {
-                        await navigator.clipboard.writeText(refName);
+                        await navigator.clipboard.writeText(value);
                     } else {
-                        const ta = document.createElement('textarea'); ta.value = refName; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+                        const ta = document.createElement('textarea'); ta.value = value; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
                     }
-                    trackRhinoEvent('rhino_copy_name_click', {
+                    trackRhinoEvent(eventName, {
                         modal: 'rhino'
                     });
-                    copyBtn.textContent = 'Copied';
+                    button.textContent = 'Copied';
                 } catch (error) {
-                    copyBtn.textContent = 'Try again';
+                    button.textContent = 'Try again';
                 }
-                setTimeout(() => copyBtn.textContent = defaultCopyLabel, 1500);
+                setTimeout(() => button.textContent = defaultLabel, 1500);
+            }
+
+            copyBtn.addEventListener('click', async () => {
+                await copyValue(refName, copyBtn, defaultCopyLabel, 'rhino_copy_name_click');
+            });
+
+            copyPhoneBtn.addEventListener('click', async () => {
+                await copyValue(phoneNumber, copyPhoneBtn, defaultCopyPhoneLabel, 'rhino_copy_phone_click');
             });
 
             setPanelState(roleBtn, rolePanel, false);

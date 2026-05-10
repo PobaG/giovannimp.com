@@ -69,6 +69,14 @@ document.addEventListener("click", (event) => {
         return;
     }
 
+    if (href.startsWith("tel:")) {
+        window.trackEvent("phone_link_click", {
+            link_text: normalizeText(link.textContent),
+            phone_number: href.replace(/^tel:/i, "")
+        });
+        return;
+    }
+
     if (href.startsWith("mailto:")) {
         window.trackEvent("email_link_click", {
             link_text: normalizeText(link.textContent),
