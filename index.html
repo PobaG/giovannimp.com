@@ -30,6 +30,8 @@
         content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
     <meta name="twitter:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta name="twitter:image:alt" content="Headshot of Giovanni Palazzolo.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7PQGV9T6P"></script>
+    <script defer src="analytics.js"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -84,7 +86,8 @@
     </header>
 
     <main class="landing-grid" aria-label="Primary site sections">
-        <a class="route-panel route-business reveal" href="business/">
+        <a class="route-panel route-business reveal" href="business/" data-analytics-event="landing_section_click"
+            data-analytics-label="business" data-analytics-section="landing">
             <div class="route-media" aria-hidden="true">
                 <img class="route-image route-image-under" src="Assets/bls_prices_plot.png" alt="">
                 <div class="route-overlay route-image-top route-overlay-red"></div>
@@ -96,7 +99,8 @@
             </div>
         </a>
 
-        <a class="route-panel route-solutions reveal" href="gio-solutions/">
+        <a class="route-panel route-solutions reveal" href="gio-solutions/" data-analytics-event="landing_section_click"
+            data-analytics-label="gio_solutions" data-analytics-section="landing">
             <div class="route-media" aria-hidden="true">
                 <img class="route-image route-image-under" src="Assets/headshot.jpg" alt="">
                 <div class="route-overlay route-image-top route-overlay-blue"></div>
@@ -108,7 +112,8 @@
             </div>
         </a>
 
-        <a class="route-panel route-creative reveal" href="creative/">
+        <a class="route-panel route-creative reveal" href="creative/" data-analytics-event="landing_section_click"
+            data-analytics-label="creative" data-analytics-section="landing">
             <div class="route-media" aria-hidden="true">
                 <img class="route-image route-image-under" src="Assets/calisthenics.jpg" alt="">
                 <div class="route-overlay route-image-top route-overlay-rainbow"></div>
@@ -200,6 +205,8 @@
                 </div>
 
                 <div class="rhino-panel" id="rolePanel" hidden>
+                    <p>This is a seasonal summer position in the Denver metro area, helping set up and tear down shows
+                        for major artists and venues like Empower Field and Ball Arena.</p>
                     <p>They start at $30.00, you can decline any shifts that you'd like, and if you only work 1 shift a
                         year you are still on the payroll &rarr; <strong>low commitment</strong>.</p>
                     <p>You can decline any shift they offer you, you make 1.5x after midnight, and get a 6 hour minimum.
@@ -227,13 +234,15 @@
 
                 <div class="rhino-action-row">
                     <button class="rhino-copy" id="copyRhino" type="button">Copy name</button>
-                    <a class="rhino-apply"
+                    <a class="rhino-apply" id="rhinoApplyLink" data-analytics-event="rhino_open_application_click"
+                        data-analytics-destination="paycom"
                         href="https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
                         target="_blank" rel="noopener noreferrer">Open application</a>
                 </div>
 
-                <a class="rhino-alt-link" href="https://joinrhino.com" target="_blank" rel="noopener noreferrer">Outside
-                    of Colorado?</a>
+                <a class="rhino-alt-link" id="rhinoAltLink" href="https://joinrhino.com" target="_blank"
+                    rel="noopener noreferrer" data-analytics-event="rhino_outside_colorado_click"
+                    data-analytics-destination="joinrhino">Outside of Colorado?</a>
 
                 <p class="rhino-signoff">Happy stagehanding this summer.</p>
             </div>
@@ -271,6 +280,14 @@
             const contactModal = document.getElementById('contact-modal');
             const defaultCopyLabel = copyBtn.textContent;
 
+            function trackRhinoEvent(eventName, details = {}) {
+                if (typeof window.trackEvent !== 'function') {
+                    return;
+                }
+
+                window.trackEvent(eventName, details);
+            }
+
             function syncBodyLock(isRhinoOpen) {
                 const isContactOpen = contactModal && !contactModal.hidden;
                 document.body.classList.toggle('modal-open', isRhinoOpen || isContactOpen);
@@ -279,6 +296,9 @@
             function showModal() {
                 modal.style.display = 'flex';
                 syncBodyLock(true);
+                trackRhinoEvent('rhino_modal_open', {
+                    modal: 'rhino'
+                });
                 closeBtn.focus();
             }
 
@@ -300,6 +320,10 @@
 
                 if (nextOpen) {
                     setPanelState(button, panel, true);
+                    trackRhinoEvent('rhino_detail_panel_open', {
+                        modal: 'rhino',
+                        panel: panel.id
+                    });
                 }
             }
 
@@ -313,6 +337,9 @@
                     } else {
                         const ta = document.createElement('textarea'); ta.value = refName; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
                     }
+                    trackRhinoEvent('rhino_copy_name_click', {
+                        modal: 'rhino'
+                    });
                     copyBtn.textContent = 'Copied';
                 } catch (error) {
                     copyBtn.textContent = 'Try again';

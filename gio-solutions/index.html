@@ -27,6 +27,8 @@
     <meta name="twitter:description" content="Video editing, website builds, and practical computer help from Giovanni Palazzolo through Gio Solutions.">
     <meta name="twitter:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta name="twitter:image:alt" content="Headshot of Giovanni Palazzolo.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7PQGV9T6P"></script>
+    <script defer src="../analytics.js"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -157,16 +159,21 @@
                 <p class="lead">Videos, websites, and computer help without extra nonsense. Scroll straight down through the three lanes, or jump to one fast if you already know what you need.</p>
                 <div class="action-row">
                     <a class="button" href="mailto:giovanni@giovannimp.com">Email Gio Solutions</a>
-                    <a class="button button-secondary" href="#video" data-scroll-link="true">See The Three</a>
+                    <a class="button button-secondary" href="#video" data-scroll-link="true"
+                        data-analytics-event="solutions_jump_click" data-analytics-label="see_the_three"
+                        data-analytics-section="hero">See The Three</a>
                     <a class="button button-secondary" href="https://github.com/PobaG" target="_blank" rel="noreferrer">View GitHub</a>
                 </div>
             </div>
 
             <aside class="jump-nav" aria-label="Section jump links">
                 <p class="card-label">Jump to</p>
-                    <a href="#video" data-scroll-link="true">01 Video</a>
-                    <a href="#web" data-scroll-link="true">02 Website</a>
-                    <a href="#pc" data-scroll-link="true">03 PC Help</a>
+                    <a href="#video" data-scroll-link="true" data-analytics-event="solutions_jump_click"
+                        data-analytics-label="video" data-analytics-section="jump_nav">01 Video</a>
+                    <a href="#web" data-scroll-link="true" data-analytics-event="solutions_jump_click"
+                        data-analytics-label="website" data-analytics-section="jump_nav">02 Website</a>
+                    <a href="#pc" data-scroll-link="true" data-analytics-event="solutions_jump_click"
+                        data-analytics-label="pc_help" data-analytics-section="jump_nav">03 PC Help</a>
             </aside>
         </section>
 
@@ -429,7 +436,9 @@
                 <div class="action-row">
                     <a class="button" href="mailto:giovanni@giovannimp.com">Email Giovanni</a>
                     <a class="button" href="https://www.youtube.com/@poba.g" target="_blank" rel="noreferrer">See Creative Work</a>
-                    <a class="button button-secondary back-to-top" href="#top" data-scroll-link="true" data-back-to-top="true">Back To Top</a>
+                    <a class="button button-secondary back-to-top" href="#top" data-scroll-link="true"
+                        data-back-to-top="true" data-analytics-event="solutions_jump_click"
+                        data-analytics-label="back_to_top" data-analytics-section="pc_help">Back To Top</a>
                 </div>
             </div>
             <div class="service-panel-side service-panel-image">
@@ -452,6 +461,14 @@
         const websiteIntakeSuccessStatus = websiteIntakeForm ? websiteIntakeForm.querySelector('[data-form-status="success"]') : null;
         let lastWebsiteFormTrigger = null;
         let activeAnimation = null;
+
+        const trackEvent = (eventName, details = {}) => {
+            if (typeof window.trackEvent !== 'function') {
+                return;
+            }
+
+            window.trackEvent(eventName, details);
+        };
 
         const easeInOutQuint = (progress) => {
             return progress < 0.5
@@ -556,6 +573,9 @@
         openWebsiteFormButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 lastWebsiteFormTrigger = button;
+                trackEvent('solutions_website_form_open', {
+                    form_name: 'website_intake'
+                });
                 setWebsiteFormOpen(true);
             });
         });
@@ -609,10 +629,16 @@
                     }
 
                     websiteIntakeForm.reset();
+                    trackEvent('solutions_website_request_submit_success', {
+                        form_name: 'website_intake'
+                    });
                     setWebsiteIntakeStatus({
                         success: 'Sent. I will review it and reply by email.'
                     });
                 } catch (error) {
+                    trackEvent('solutions_website_request_submit_error', {
+                        form_name: 'website_intake'
+                    });
                     setWebsiteIntakeStatus({
                         error: 'Could not send yet. Try again in a minute.'
                     });

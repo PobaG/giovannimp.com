@@ -11,6 +11,14 @@ const contactFeedback = document.querySelector("[data-contact-feedback]");
 let mobileRouteObserver = null;
 let lastContactTrigger = null;
 
+const trackEvent = (eventName, details = {}) => {
+    if (typeof window.trackEvent !== "function") {
+        return;
+    }
+
+    window.trackEvent(eventName, details);
+};
+
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries, currentObserver) => {
         entries.forEach((entry) => {
@@ -92,6 +100,10 @@ const setContactModalOpen = (isOpen) => {
     }
 
     if (isOpen) {
+        trackEvent("landing_contact_modal_open", {
+            section: "quick_links"
+        });
+
         window.requestAnimationFrame(() => {
             const firstField = contactModal.querySelector(".contact-form input:not([type='hidden']), .contact-form select, .contact-form textarea, .modal-close");
 
@@ -155,11 +167,18 @@ if (contactForm && "fetch" in window) {
             }
 
             contactForm.reset();
+            trackEvent("landing_contact_form_submit_success", {
+                form_name: "contact"
+            });
 
             if (contactFeedback) {
                 contactFeedback.textContent = "Sent. I will reply by email.";
             }
         } catch (error) {
+            trackEvent("landing_contact_form_submit_error", {
+                form_name: "contact"
+            });
+
             if (contactFeedback) {
                 contactFeedback.textContent = "Could not send yet. Try again in a minute.";
             }
