@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Giovanni — RHINO Hiring</title>
+    <style>
+        :root {
+            --bg: rgba(0, 0, 0, 0.6);
+            --card: #fff;
+            --accent: #0b67ff
+        }
+
+        body {
+            font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            margin: 0;
+            background: #f7f7f8
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            z-index: 9999
+        }
+
+        .modal {
+            background: var(--card);
+            max-width: 820px;
+            width: 94%;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            display: flex;
+            gap: 18px;
+            align-items: flex-start
+        }
+
+        .modal-left {
+            flex: 1
+        }
+
+        .modal-right {
+            width: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px
+        }
+
+        .modal h2 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            letter-spacing: 0.6px
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 6px
+        }
+
+        .lead {
+            margin: 0 0 12px;
+            color: #111
+        }
+
+        .dropdown summary {
+            cursor: pointer;
+            list-style: none;
+            font-weight: 600
+        }
+
+        .dropdown p {
+            margin: 8px 0
+        }
+
+        .apply-link {
+            display: block;
+            margin-top: 12px;
+            font-size: 16px;
+            color: var(--accent);
+            word-break: break-all
+        }
+
+        .name-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 8px
+        }
+
+        .copy-btn {
+            background: #eee;
+            border: 0;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer
+        }
+
+        .copy-btn:active {
+            transform: translateY(1px)
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            background: transparent;
+            border: 0;
+            font-size: 20px;
+            cursor: pointer
+        }
+
+        .qr {
+            border: 1px solid #ddd;
+            padding: 6px;
+            border-radius: 8px;
+            background: #fff
+        }
+
+        .big-link {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 12px
+        }
+
+        @media(max-width:640px) {
+            .modal {
+                flex-direction: column
+            }
+
+            .modal-right {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1 style="padding:24px; text-align:center;">Welcome to Giovanni's Page</h1>
+        <p style="text-align:center;">Content of the site goes here.</p>
+    </main>
+
+    <div id="rhinoModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="rhinoTitle"
+        style="display:none">
+        <div class="modal" role="document">
+            <button class="close-btn" id="closeModal" aria-label="Close popup">✕</button>
+            <div class="modal-left">
+                <h2 id="rhinoTitle">RHINO IS HIRING</h2>
+                <div class="job-title">I'm being offered a $100 Amazon gift card for anyone who applied with my full
+                    first and last name <strong>GIOVANNI PALAZZOLO</strong></div>
+                <p class="lead">(There's some requirements for me to get it, but regardless it's a super fun job for
+                    everyone to work this summer)</p>
+
+                <details class="dropdown">
+                    <summary>Role details (click to expand)</summary>
+                    <p>They start at $30.00, you can decline any shifts that you'd like, if you only work 1 shift a year
+                        you are still on the payroll → <strong>LOW COMMITMENT</strong></p>
+                    <p>You can decline any shift they offer you, you make 1.5x after midnight, and get a 6 hour minimum.
+                        If you do teardown at 10pm and work until 1am you get paid 4 hours OT + 2 regular (6 total)
+                        despite working 3 hours.</p>
+                    <p>If you do 2 different shifts in a single day: first shift = 6 hour minimum, second shift = 5 hour
+                        minimum.</p>
+                </details>
+
+                <div class="big-link">Here is the application link:</div>
+                <a class="apply-link"
+                    href="https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
+                    target="_blank" rel="noopener noreferrer">https://www.paycomonline.net/.../jobs/61924</a>
+
+                <div class="name-row">
+                    <div>My name to use on application:</div>
+                    <div style="display:flex;align-items:center">
+                        <span id="refName" style="font-weight:700;margin-right:8px">GIOVANNI PALAZZOLO</span>
+                        <button class="copy-btn" id="copyName">Copy</button>
+                    </div>
+                </div>
+
+                <p style="margin-top:12px;">Happy stagehanding this summer!</p>
+            </div>
+
+            <div class="modal-right">
+                <img class="qr"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
+                    alt="QR code to application" width="150" height="150">
+                <small style="text-align:center;color:#333">Scan to apply</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const modal = document.getElementById('rhinoModal');
+            const closeBtn = document.getElementById('closeModal');
+            const copyBtn = document.getElementById('copyName');
+            const refName = document.getElementById('refName').textContent.trim();
+            const storageKey = 'rhinoReferralDismissed_v1';
+
+            function showIfNeeded() {
+                try {
+                    if (!localStorage.getItem(storageKey)) {
+                        modal.style.display = 'flex';
+                        // trap focus briefly
+                        closeBtn.focus();
+                    }
+                } catch (e) { modal.style.display = 'flex'; }
+            }
+
+            function closeModal(persist = true) {
+                modal.style.display = 'none';
+                if (persist) {
+                    try { localStorage.setItem(storageKey, '1'); } catch (e) { }
+                }
+            }
+
+            closeBtn.addEventListener('click', () => closeModal(true));
+            // close on overlay click
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(true); });
+
+            copyBtn.addEventListener('click', async () => {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(refName);
+                } else {
+                    const ta = document.createElement('textarea'); ta.value = refName; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+                }
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => copyBtn.textContent = 'Copy', 1500);
+            });
+
+            // show on load
+            window.addEventListener('load', showIfNeeded);
+            // keyboard: Esc closes
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display !== 'none') { closeModal(true); } });
+        })();
+    </script>
+</body>
+
+</html>

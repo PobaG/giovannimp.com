@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StageRight Deck Drills</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="course-header">
+      <span class="brand-kicker">STAGERIGHT TRAINING DECK</span>
+      <h1>Stagehand Essentials</h1>
+    </header>
+
+    <section class="course-award">
+      <div class="course-award-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="course-award-copy">
+        <span class="award-kicker">Memory drill pack</span>
+        <h2 id="courseLessonHeading">Crew Call Mix</h2>
+        <p id="courseLessonMeta">Crew-call memory reps for staging cables, fixtures, rigging, and audio deck gear.</p>
+      </div>
+      <div class="course-award-actions">
+        <button class="primary-button" id="startLessonButton" type="button">Start Lesson</button>
+        <button class="secondary-button" id="welcomeReviewButton" type="button">Review Misses</button>
+      </div>
+    </section>
+
+    <section class="course-progress-strip">
+      <div class="course-progress-track">
+        <div class="course-progress-fill" id="courseProgressFill"></div>
+      </div>
+      <strong class="course-progress-value" id="courseProgressValue">READY TO DRILL</strong>
+      <span class="course-progress-meta" id="courseProgressMeta">0 items in active lesson</span>
+      <span class="course-progress-pill" id="courseProgressPill">READY</span>
+    </section>
+
+    <div class="stage-shell">
+      <aside class="lesson-rail">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Training lanes</span>
+            <h2>Choose a Lesson</h2>
+          </div>
+        </div>
+
+        <div class="lesson-list" id="lessonList"></div>
+
+        <div class="rail-note">
+          <span class="rail-note-label">Question pool bonus</span>
+          <p>The deck already includes extra calls beyond your examples, including stage pin, opticalCON, SpeakON, jumper cables, line arrays, and more.</p>
+        </div>
+      </aside>
+
+      <main class="arena">
+      <header class="status-bar">
+        <div class="status-pill">
+          <span class="status-label">Lesson</span>
+          <strong id="statusLesson">Crew Call Mix</strong>
+        </div>
+        <div class="status-pill">
+          <span class="status-label">Lives</span>
+          <strong id="statusLives">4</strong>
+        </div>
+        <div class="status-pill">
+          <span class="status-label">Streak</span>
+          <strong id="statusStreak">0</strong>
+        </div>
+        <div class="status-pill">
+          <span class="status-label">XP</span>
+          <strong id="statusXp">0</strong>
+        </div>
+      </header>
+
+        <section class="hero-card screen" id="welcomeScreen">
+          <div class="overview-grid">
+            <div class="overview-copy">
+              <span class="eyebrow">Step into the world of live event production</span>
+              <h2 id="welcomeTitle">Crew Call Mix</h2>
+              <p class="hero-copy" id="welcomeBlurb"></p>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <span>Pool</span>
+                  <strong id="welcomeItems">0 items</strong>
+                </div>
+                <div class="hero-stat">
+                  <span>Round</span>
+                  <strong id="welcomeQuestions">0 questions</strong>
+                </div>
+                <div class="hero-stat">
+                  <span>Modes</span>
+                  <strong>Picture, call, use</strong>
+                </div>
+              </div>
+
+              <div class="hero-footnote">
+                Missed items recycle back into the queue so the app behaves more like a focused memory drill than a one-pass quiz.
+              </div>
+            </div>
+
+            <div class="poster-card" aria-hidden="true">
+              <div class="poster-surface">
+                <span class="poster-topline">StageRight deck drills</span>
+                <strong>STAGEHAND<br>ESSENTIALS</strong>
+                <p>Power / rigging / signal / lighting / audio</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <section class="quiz-card screen is-hidden" id="quizScreen">
+        <div class="progress-row">
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-copy">
+            <span id="progressIndex">1</span>
+            <span>/</span>
+            <span id="progressTotal">12</span>
+          </div>
+        </div>
+
+        <div class="question-head">
+          <span class="lane-badge" id="questionLane">Power</span>
+          <span class="type-badge" id="questionType">Picture ID</span>
+        </div>
+
+        <h2 class="question-prompt" id="questionPrompt"></h2>
+        <div class="question-stage" id="questionStage"></div>
+        <div class="choices" id="choiceList"></div>
+
+        <div class="feedback is-hidden" id="feedbackBox">
+          <div>
+            <strong id="feedbackTitle"></strong>
+            <p id="feedbackBody"></p>
+          </div>
+          <button class="primary-button compact" id="continueButton" type="button">Continue</button>
+        </div>
+      </section>
+
+      <section class="summary-card screen is-hidden" id="summaryScreen">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Session complete</span>
+            <h2 id="summaryTitle">Nice work</h2>
+          </div>
+        </div>
+
+        <p class="summary-copy" id="summaryCopy"></p>
+
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <span>Accuracy</span>
+            <strong id="summaryAccuracy">0%</strong>
+          </div>
+          <div class="summary-stat">
+            <span>Correct</span>
+            <strong id="summaryCorrect">0</strong>
+          </div>
+          <div class="summary-stat">
+            <span>Best streak</span>
+            <strong id="summaryBestStreak">0</strong>
+          </div>
+          <div class="summary-stat">
+            <span>XP earned</span>
+            <strong id="summaryXp">0</strong>
+          </div>
+        </div>
+
+        <div class="summary-actions">
+          <button class="primary-button" id="summaryReplayButton" type="button">Run It Again</button>
+          <button class="secondary-button" id="summaryMissesButton" type="button">Practice Misses</button>
+        </div>
+
+        <div class="misses-panel">
+          <div class="section-head tight">
+            <div>
+              <span class="eyebrow">Keep sharpening</span>
+              <h3>Missed Items</h3>
+            </div>
+          </div>
+          <div class="misses-list" id="missesList"></div>
+        </div>
+      </section>
+
+        <section class="library-card">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Study deck</span>
+              <h2>Question Pool</h2>
+            </div>
+          </div>
+
+          <div class="library-filters" id="libraryFilters"></div>
+          <div class="library-grid" id="libraryGrid"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

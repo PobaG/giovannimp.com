@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work</title>
-    <meta name="description" content="Explore Giovanni Palazzolo's business background, web development work, Gio Solutions services, and creative projects.">
+    <meta name="description"
+        content="Explore Giovanni Palazzolo's business background, web development work, Gio Solutions services, and creative projects.">
     <meta name="author" content="Giovanni Palazzolo">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="icon" href="/Assets/favicon.ico" sizes="any">
@@ -18,13 +19,15 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Giovanni Palazzolo Portfolio">
     <meta property="og:title" content="Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work">
-    <meta property="og:description" content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
+    <meta property="og:description"
+        content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
     <meta property="og:url" content="https://giovannimp.com/">
     <meta property="og:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta property="og:image:alt" content="Headshot of Giovanni Palazzolo.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Giovanni Palazzolo | Business, Web Development, Gio Solutions, Creative Work">
-    <meta name="twitter:description" content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
+    <meta name="twitter:description"
+        content="Business experience, web development work, Gio Solutions services, and creative projects from Giovanni Palazzolo.">
     <meta name="twitter:image" content="https://giovannimp.com/Assets/headshot.jpg">
     <meta name="twitter:image:alt" content="Headshot of Giovanni Palazzolo.">
     <script type="application/ld+json">
@@ -76,7 +79,8 @@
 <body class="landing-page">
     <header class="sr-only">
         <h1>Giovanni Palazzolo</h1>
-        <p>Portfolio hub for business experience, web development work, Gio Solutions services, and creative projects.</p>
+        <p>Portfolio hub for business experience, web development work, Gio Solutions services, and creative projects.
+        </p>
     </header>
 
     <main class="landing-grid" aria-label="Primary site sections">
@@ -120,7 +124,8 @@
     <footer class="quick-links-dock">
         <div class="quick-links-reveal">
             <p class="quick-links-title">Quick Links</p>
-            <button class="quick-link-button" type="button" data-contact-open aria-controls="contact-modal" aria-expanded="false">Contact</button>
+            <button class="quick-link-button" type="button" data-contact-open aria-controls="contact-modal"
+                aria-expanded="false">Contact</button>
             <a href="https://github.com/PobaG" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://www.youtube.com/@poba.g" target="_blank" rel="noreferrer">YouTube</a>
             <a href="https://www.instagram.com/poba.g" target="_blank" rel="noreferrer">Instagram</a>
@@ -130,7 +135,8 @@
     </footer>
 
     <div class="contact-modal" id="contact-modal" hidden>
-        <button class="contact-modal-backdrop" type="button" data-contact-close aria-label="Close contact form"></button>
+        <button class="contact-modal-backdrop" type="button" data-contact-close
+            aria-label="Close contact form"></button>
         <section class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-title">
             <button class="modal-close" type="button" data-contact-close>Close</button>
             <p class="modal-kicker">Contact</p>
@@ -166,13 +172,164 @@
                 </div>
                 <div class="contact-form-actions">
                     <button class="contact-submit" type="submit">Send</button>
-                    <p class="form-feedback" data-contact-feedback role="status" aria-live="polite">Ready when you are.</p>
+                    <p class="form-feedback" data-contact-feedback role="status" aria-live="polite">Ready when you are.
+                    </p>
                 </div>
             </form>
         </section>
     </div>
 
     <script src="landing.js"></script>
+
+    <!-- RHINO modal -->
+    <div id="rhinoModal" class="rhino-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="rhinoTitle"
+        style="display:none">
+        <div class="rhino-modal" role="document">
+            <button class="rhino-close" id="closeRhino" type="button" aria-label="Close popup">&times;</button>
+            <div class="rhino-main">
+                <p class="rhino-kicker">Seasonal referral</p>
+                <h2 id="rhinoTitle" class="rhino-title">Rhino Is Hiring</h2>
+                <p class="rhino-job">I'm being offered a $100 Amazon gift card for anyone who applies with my full first
+                    and last name <strong>GIOVANNI PALAZZOLO</strong>.</p>
+
+                <div class="rhino-toggle-row">
+                    <button class="rhino-pill-button" id="roleBtn" type="button" aria-controls="rolePanel"
+                        aria-expanded="false">Role details</button>
+                    <button class="rhino-pill-button" id="stipBtn" type="button" aria-controls="stipPanel"
+                        aria-expanded="false">Stipulations for me</button>
+                </div>
+
+                <div class="rhino-panel" id="rolePanel" hidden>
+                    <p>They start at $30.00, you can decline any shifts that you'd like, and if you only work 1 shift a
+                        year you are still on the payroll &rarr; <strong>low commitment</strong>.</p>
+                    <p>You can decline any shift they offer you, you make 1.5x after midnight, and get a 6 hour minimum.
+                        If you do teardown at 10pm and work until 1am you get paid 4 hours OT + 2 regular (6 total)
+                        despite working 3 hours.</p>
+                    <p>If you do 2 different shifts in a single day: first shift = 6 hour minimum, second shift = 5
+                        hour minimum.</p>
+                </div>
+
+                <div class="rhino-panel" id="stipPanel" hidden>
+                    <p><strong>Stipulations:</strong></p>
+                    <ul>
+                        <li>If the employee referred receives any negative points (Call Outs, NCNS, Late, etc), they are
+                            disqualified from the program and are no longer an eligible referral.</li>
+                        <li>Full-time Rhino employees are not eligible for this program.</li>
+                        <li>Qualifying shifts must be within 12 months of hire.</li>
+                        <li>Referring employees must be active and in good standing at time of referral and time of
+                            reward.</li>
+                        <li>Applicant must include the first and last name of the referring employee on the application
+                            with no exceptions and no after-the-fact changes.</li>
+                    </ul>
+                </div>
+
+                <p class="rhino-action-note">Please mention my name: <strong id="refName">Giovanni Palazzolo</strong> on the application!</p>
+
+                <div class="rhino-action-row">
+                    <button class="rhino-copy" id="copyRhino" type="button">Copy name</button>
+                    <a class="rhino-apply"
+                        href="https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
+                        target="_blank" rel="noopener noreferrer">Open application</a>
+                </div>
+
+                <a class="rhino-alt-link" href="https://joinrhino.com" target="_blank" rel="noopener noreferrer">Outside
+                    of Colorado?</a>
+
+                <p class="rhino-signoff">Happy stagehanding this summer.</p>
+            </div>
+
+            <aside class="rhino-side" aria-label="Application details">
+                <div class="rhino-qr-shell">
+                    <p class="rhino-side-label">Scan to apply</p>
+                    <img class="rhino-qr"
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
+                        alt="QR code to application" width="260" height="260">
+                    <p class="rhino-side-note">Make sure when applying that you include
+                        <strong>Giovanni Palazzolo</strong> as the referral name.</p>
+                </div>
+
+                <div class="rhino-side-meta">
+                    <p class="rhino-name-label">Direct link</p>
+                    <a class="rhino-side-link"
+                        href="https://www.paycomonline.net/v4/ats/web.php/portal/392AD57FCB3F020D0F359CA29E9CD057/jobs/61924"
+                        target="_blank" rel="noopener noreferrer">Paycom job posting</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const modal = document.getElementById('rhinoModal');
+            const closeBtn = document.getElementById('closeRhino');
+            const copyBtn = document.getElementById('copyRhino');
+            const refName = document.getElementById('refName').textContent.trim();
+            const roleBtn = document.getElementById('roleBtn');
+            const stipBtn = document.getElementById('stipBtn');
+            const rolePanel = document.getElementById('rolePanel');
+            const stipPanel = document.getElementById('stipPanel');
+            const contactModal = document.getElementById('contact-modal');
+            const defaultCopyLabel = copyBtn.textContent;
+
+            function syncBodyLock(isRhinoOpen) {
+                const isContactOpen = contactModal && !contactModal.hidden;
+                document.body.classList.toggle('modal-open', isRhinoOpen || isContactOpen);
+            }
+
+            function showModal() {
+                modal.style.display = 'flex';
+                syncBodyLock(true);
+                closeBtn.focus();
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                syncBodyLock(false);
+            }
+
+            function setPanelState(button, panel, isOpen) {
+                panel.hidden = !isOpen;
+                button.classList.toggle('is-active', isOpen);
+                button.setAttribute('aria-expanded', String(isOpen));
+            }
+
+            function togglePanel(button, panel) {
+                const nextOpen = panel.hidden;
+                setPanelState(roleBtn, rolePanel, false);
+                setPanelState(stipBtn, stipPanel, false);
+
+                if (nextOpen) {
+                    setPanelState(button, panel, true);
+                }
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(refName);
+                    } else {
+                        const ta = document.createElement('textarea'); ta.value = refName; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+                    }
+                    copyBtn.textContent = 'Copied';
+                } catch (error) {
+                    copyBtn.textContent = 'Try again';
+                }
+                setTimeout(() => copyBtn.textContent = defaultCopyLabel, 1500);
+            });
+
+            setPanelState(roleBtn, rolePanel, false);
+            setPanelState(stipBtn, stipPanel, false);
+
+            roleBtn.addEventListener('click', () => togglePanel(roleBtn, rolePanel));
+            stipBtn.addEventListener('click', () => togglePanel(stipBtn, stipPanel));
+
+            window.addEventListener('load', showModal);
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display !== 'none') { closeModal(); } });
+        })();
+    </script>
 </body>
 
 </html>
